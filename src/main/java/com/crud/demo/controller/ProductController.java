@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products")
@@ -33,9 +33,9 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public void getProductById(@PathVariable Long id){
+    public Optional<Product> getProductById(@PathVariable Long id){
 
-        productService.getProductById(id);
+        return productService.getProductById(id);
     }
 
     @PutMapping("/{id}")

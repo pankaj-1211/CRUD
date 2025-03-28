@@ -21,13 +21,13 @@ public class CategoryService {
 
 
 
-    public Page<Category> getAllCategories(Pageable pageable) {
-        return categoryRepository.findAll(pageable);
+    public Category getCategoryById(Long id) {
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Category not found with id " + id));
     }
 
-    public Optional<Category> getCategoryById(Long id){
-
-        return categoryRepository.findById(id);
+    public Page<Category> getAllCategories(Pageable pageable) {
+        return categoryRepository.findAll(pageable);
     }
 
     public Category addCategory(Category cat){

@@ -1,6 +1,8 @@
 package com.crud.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,9 +13,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String productName;
-
-    @ManyToOne
-    @JoinColumn(name="category_id")
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="category_id" )
     private Category category;
 
     public Category getCategories() {

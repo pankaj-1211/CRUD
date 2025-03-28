@@ -3,14 +3,11 @@ package com.crud.demo.controller;
 import com.crud.demo.model.Category;
 import com.crud.demo.model.Product;
 import com.crud.demo.service.CategoryService;
-import com.crud.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -39,9 +36,9 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public void getCategoryById(@PathVariable Long id){
+    public Category getCategoryById(@PathVariable Long id){
 
-        categoryService.getCategoryById(id);
+        return (categoryService.getCategoryById(id));
     }
 
     @PutMapping("/{id}")

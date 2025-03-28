@@ -1,5 +1,6 @@
 package com.crud.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
@@ -13,7 +14,8 @@ public class Category {
     private Long id;
     private String categoryName;
 
-    @OneToMany(mappedBy = "category" , cascade=CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "category" , cascade=CascadeType.ALL , fetch = FetchType.LAZY)
     private List<Product> products;
 
     public String getCategoryName() {
